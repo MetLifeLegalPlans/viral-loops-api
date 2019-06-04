@@ -1,0 +1,13 @@
+from setuptools import setup
+
+setup(
+  name='viral-loops-api',
+  version='0.1',
+  description='A simplistic API wrapper for viral-loops',
+  url='https://github.com/bequest/viral-loops-api',
+  author='Bequest Inc.',
+  author_email='devs@willing.com',
+  license='GPLv3',
+  packages=['viral-loops-api'],
+  zip_safe=False,
+)
