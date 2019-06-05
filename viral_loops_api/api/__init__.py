@@ -4,10 +4,8 @@ from urllib.parse import urljoin
 from ..exceptions import MissingFieldException, MissingReferrerException
 from ..utils import validate_enum
 
-from . import *
-
 class APIBase:
-    base_url = 'https://app.viral-loops.com/api/v2/'
+  base_url = 'https://app.viral-loops.com/api/v2/'
 
   def __init__(self, api_token):
     if not api_token:
@@ -18,7 +16,7 @@ class APIBase:
   def _url(self, resource):
     return urljoin(self.base_url, resource)
 
-  @attribute
+  @property
   def _default_body(self):
     return {
       'apiToken': self.api_token,

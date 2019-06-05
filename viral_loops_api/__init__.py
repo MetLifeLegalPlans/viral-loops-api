@@ -1,4 +1,4 @@
-from api import *
+from .api.altruistic_referral import AltruisticReferralMixin
 
 
 # Everything we need is available from the mixins, and separated by

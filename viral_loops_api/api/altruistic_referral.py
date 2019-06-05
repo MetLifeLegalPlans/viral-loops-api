@@ -25,7 +25,7 @@ class AltruisticReferralMixin(APIBase):
         'email': email,
       },
       'referrer': {},
-      'refSource': '',`
+      'refSource': '',
     }
 
     if referral_code:
@@ -62,7 +62,7 @@ class AltruisticReferralMixin(APIBase):
       },
     )
 
-    if response.get('status')
+    if response.get('status'):
       raise MissingReferrerException(f'{email} is missing a referrer')
 
     return response

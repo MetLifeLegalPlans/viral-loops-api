@@ -8,6 +8,6 @@ setup(
   author='Bequest Inc.',
   author_email='devs@willing.com',
   license='GPLv3',
-  packages=['viral-loops-api'],
+  packages=['viral_loops_api'],
   zip_safe=False,
 )
