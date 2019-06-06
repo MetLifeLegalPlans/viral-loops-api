@@ -22,19 +22,23 @@ class APIBase:
       'apiToken': self.api_token,
     }
 
-  def _body(self, method, body=None):
-    if method == 'GET':
+  def _body(self, method, body=None, wrap=True):
+    if method == 'GET' and not wrap:
       return body
 
     if not body:
       return self._default_body
 
     result = self._default_body.copy()
-    result['params'] = body
+
+    if wrap:
+      result['params'] = body
+    else:
+      result.update(body)
 
     return result
 
-  def _request(self, resource, body=None, method=None):
+  def _request(self, resource, body=None, method=None, wrap=True):
     validate_enum(method, ['GET', 'POST'])
 
     querystring_params = None
@@ -47,7 +51,7 @@ class APIBase:
     return requests.request(
       method,
       self._url(resource),
-      json=self._body(method, body=body),
+      json=self._body(method, body=body, wrap=wrap),
       headers={
         'Content-Type': 'application/json',
       },

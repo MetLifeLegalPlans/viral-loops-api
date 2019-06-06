@@ -1,9 +1,10 @@
 from . import APIBase
 from ..utils import validate_enum
+from ..exceptions import MissingFieldException, MissingReferrerException
+
 
 # Converted from documentation at:
 # https://intercom.help/viral-loops/the-altruistic-referral-template/the-altruistic-referral-your-web-app
-
 class AltruisticReferralMixin(APIBase):
   def identify_user(
       self,
@@ -14,9 +15,6 @@ class AltruisticReferralMixin(APIBase):
       referral_email=None,
       referral_source=None,
   ):
-    if not (referral_code or referral_email):
-      raise MissingFieldException('Either referral_code or referral_email required')
-
     body = {
       'event': 'registration',
       'user': {
@@ -24,9 +22,11 @@ class AltruisticReferralMixin(APIBase):
         'lastname': last_name,
         'email': email,
       },
-      'referrer': {},
       'refSource': '',
     }
+
+    if referral_code or referral_email:
+      body['referrer'] = {}
 
     if referral_code:
       body['referrer']['referralCode'] = referral_code
@@ -51,7 +51,7 @@ class AltruisticReferralMixin(APIBase):
 
   def track_conversion(self, email):
     # Normally we would return this, but the API returns failure
-    #   not with status code, but as a field in the response
+    #   not with status code, but as a field in the response for this endpoint
     response = self.post(
       'events',
       body={
@@ -81,6 +81,7 @@ class AltruisticReferralMixin(APIBase):
     response = self.get(
       'pending_rewards',
       body=body,
+      wrap=False,
     )
 
     result = response.get('pending')
@@ -99,13 +100,18 @@ class AltruisticReferralMixin(APIBase):
   def redeem_reward(self, reward_id=None, email=None, referral_code=None):
     body = {}
 
+    if not (rewarid_id or email or referral_code):
+      raise MissingFieldException('No valid reward identifier given')
+
     if reward_id:
       body['rewardId'] = reward_id
 
     if email or referral_code:
       body['user'] = self.user_object(email, referral_code)
 
-    self.post(
+    return self.post(
       'rewarded',
       body=body,
+      # In this specific request only, the API token is mixed in with the body
+      wrap=False,
     )

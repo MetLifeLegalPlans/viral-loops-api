@@ -6,7 +6,7 @@ setup(
   description='A simplistic API wrapper for viral-loops',
   url='https://github.com/bequest/viral-loops-api',
   author='Bequest Inc.',
-  author_email='devs@willing.com',
+  author_email='oss@willing.com',
   license='GPLv3',
   packages=['viral_loops_api'],
   zip_safe=False,
