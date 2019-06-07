@@ -67,7 +67,7 @@ class AltruisticReferralMixin(APIBase):
 
     return response
 
-  def get_pending_rewards(self, email=None, referral_code=None, limit=25, skip=0):
+  def get_pending_rewards(self, email=None, referral_code=None, limit=25, skip=0, paginate=False):
     body = {
       'filter': {
         'limit': limit,
@@ -87,7 +87,7 @@ class AltruisticReferralMixin(APIBase):
     result = response.get('pending')
 
     # There's some pretty arbitrary pagination rules on the api, so concatenate here
-    if len(result) == limit:
+    if len(result) == limit and not paginate:
       return result + self.get_pending_rewards(
         email,
         referral_code,
