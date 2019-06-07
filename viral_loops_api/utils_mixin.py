@@ -1,5 +1,5 @@
-from . import APIBase
-from ..exceptions import MissingFieldException
+from .base import APIBase
+from .exceptions import MissingFieldException
 
 
 class UtilsMixin(APIBase):

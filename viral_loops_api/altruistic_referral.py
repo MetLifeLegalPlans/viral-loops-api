@@ -1,6 +1,6 @@
-from . import APIBase
-from ..utils import validate_enum
-from ..exceptions import MissingFieldException, MissingReferrerException
+from .base import APIBase
+from .utils import validate_enum
+from .exceptions import MissingFieldException, MissingReferrerException
 
 
 # Converted from documentation at:
@@ -100,7 +100,7 @@ class AltruisticReferralMixin(APIBase):
   def redeem_reward(self, reward_id=None, email=None, referral_code=None):
     body = {}
 
-    if not (rewarid_id or email or referral_code):
+    if not (reward_id or email or referral_code):
       raise MissingFieldException('No valid reward identifier given')
 
     if reward_id:

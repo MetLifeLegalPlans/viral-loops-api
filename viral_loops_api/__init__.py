@@ -1,5 +1,5 @@
-from .api.altruistic_referral import AltruisticReferralMixin
-from .api.utils import UtilsMixin
+from .altruistic_referral import AltruisticReferralMixin
+from .utils_mixin import UtilsMixin
 
 
 # Everything we need is available from the mixins, and separated by

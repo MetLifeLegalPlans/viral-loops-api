@@ -1,8 +1,8 @@
 import requests
 from urllib.parse import urljoin
 
-from ..exceptions import MissingFieldException, MissingReferrerException
-from ..utils import validate_enum
+from .exceptions import MissingFieldException, MissingReferrerException
+from .utils import validate_enum
 
 class APIBase:
   base_url = 'https://app.viral-loops.com/api/v2/'
