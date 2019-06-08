@@ -1,8 +1,8 @@
 # Importing and Usage
 
-    from viral_loops_api import API
+    from viral_loops_api import ViralLoopsClient
 
-    api = API('campaign_secret_token')
+    viral_loops = ViralLoopsClient('campaign_secret_token')
 
-All methods listed on sub pages are member methods of `API`,
-meaning they are called like `api.identify_user(*args, **kwargs)`
+All methods listed on sub pages are member methods of `ViralLoopsClient`,
+meaning they are called like `viral_loops.identify_user(*args, **kwargs)`

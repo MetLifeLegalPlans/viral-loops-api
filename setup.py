@@ -7,8 +7,8 @@ with open('README.md', 'r') as f:
 
 setup(
   name='viral-loops-api',
-  version='0.3.9',
-  description='A simplistic API wrapper for viral-loops',
+  version='0.4.0',
+  description='A simplistic API client for viral-loops',
   long_description=readme_content,
   long_description_content_type='text/markdown',
   url='https://github.com/bequest/viral-loops-api',
