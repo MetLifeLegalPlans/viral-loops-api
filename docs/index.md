@@ -5,7 +5,7 @@ interactions with Viral Loops. To get started, run
 
     from viral_loops_api import ViralLoopsClient
 
-    api = API('secret_token_here')
+    viral_loops = ViralLoopsClient('campaign_secret_token')
     # ...
 
 All methods in this library will return JSON (as parsed by `requests`),
